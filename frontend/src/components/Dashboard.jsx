@@ -14,7 +14,7 @@ const Dashboard = ({ onLogout }) => {
       <p>You are successfully logged in.</p>
       <button onClick={handleLogoutClick}>Logout</button>
     </div>
-  );
+  );  
 };
 
 

@@ -96,10 +96,10 @@ app.post('/token', (req, res) => {
       return res.status(403).json({ message: 'Invalid refresh token' });
     }
     const accessToken = jwt.sign({ userId: user.userId, email: user.email }, JWT_SECRET, { expiresIn: '3m' });
-    res.json({ accessToken });
-  });
-});
+      res.json({ accessToken });
+    });
 
+});
 // Route to logout and invalidate refresh token
 app.post('/logout', (req, res) => {
   const { refreshToken } = req.body;

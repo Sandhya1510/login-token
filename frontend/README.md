@@ -49,7 +49,7 @@ Ensure you have the following installed:
 
 ## User Management Endpoints
 - GET /details: Get details of all users
-- PUT /details/:id: Update user details by ID
+- PUT /details/:id: Update user details by IDrouting
 - DELETE /details/:id: Delete user by ID
 
 ### Key Dependencies
@@ -64,4 +64,4 @@ Ensure you have the following installed:
 ## Frontend
 - react: Component-based UI library
 - axios: HTTP requests
-- react-router-dom: Client-side routing
+- react-router-dom: Client-side 
