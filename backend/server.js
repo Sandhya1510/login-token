@@ -4,9 +4,9 @@ const jwt = require('jsonwebtoken');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 
-const JWT_SECRET = 'sandhya@daddy'; 
-const REFRESH_TOKEN_SECRET = 'daddy@sandhya@daddy'; 
-let refreshTokens = []; 
+const JWT_SECRET = 'sandhya@daddy';
+const REFRESH_TOKEN_SECRET = 'daddy@sandhya@daddy';
+let refreshTokens = [];
 
 // MongoDB connection
 mongoose.connect('mongodb+srv://sandhyak:jkR8qlxnZIz5cNZh@cluster0.rc1dc.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0', {
@@ -28,7 +28,7 @@ app.use(cors({
 // Define the User schema and model
 const UserSchema = new mongoose.Schema({
   email: { type: String, required: true, unique: true },
-  password: { type: String, required: true }, 
+  password: { type: String, required: true },
 });
 
 const User = mongoose.model('User', UserSchema);
@@ -76,9 +76,9 @@ app.post('/login', async (req, res) => {
     const accessToken = jwt.sign({ userId: user._id, email: user.email }, JWT_SECRET, { expiresIn: '3m' });
     const refreshToken = jwt.sign({ userId: user._id, email: user.email }, REFRESH_TOKEN_SECRET);
     refreshTokens.push(refreshToken);
-   
+
     res.json({ accessToken, refreshToken, message: 'Login successful' });
-    
+
   } catch (error) {
     res.status(500).json({ message: 'Server error' });
   }
@@ -96,8 +96,8 @@ app.post('/token', (req, res) => {
       return res.status(403).json({ message: 'Invalid refresh token' });
     }
     const accessToken = jwt.sign({ userId: user.userId, email: user.email }, JWT_SECRET, { expiresIn: '3m' });
-      res.json({ accessToken });
-    });
+    res.json({ accessToken });
+  });
 
 });
 // Route to logout and invalidate refresh token
@@ -147,4 +147,3 @@ app.delete('/details/:id', async (req, res) => {
 app.listen(5000, () => {
   console.log('Server is running on http://localhost:5000');
 });
- 
